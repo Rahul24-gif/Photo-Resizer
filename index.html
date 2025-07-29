@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Editor</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row my-4">
+      <div class="col">
+        <h1>Image Editor</h1>
+      </div>
+      <div class="col text-right">
+        <button id="theme-toggle" class="btn btn-secondary">Toggle Theme</button>
+      </div>
+    </div>
+
+    <div id="alert-container"></div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="image-workspace">
+          <div id="dropzone">
+            <label for="file-input" class="sr-only">Select image file</label>
+            <input type="file" id="file-input" accept="image/*" title="Select image file">
+          </div>
+          <div id="image-container">
+            <img id="image-preview" alt="Image preview">
+          </div>
+          <div id="loading" class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="controls">
+          <div class="form-group">
+            <label for="presets">Select Preset</label>
+            <select id="presets" class="form-control">
+              <option value="">Custom</option>
+            </select>
+          </div>
+
+          <hr>
+
+          <h5>Manual Settings</h5>
+          <div class="form-group">
+            <label for="width">Width</label>
+            <input type="number" id="width" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="height">Height</label>
+            <input type="number" id="height" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="unit">Unit</label>
+            <select id="unit" class="form-control">
+              <option value="px">Pixels (px)</option>
+              <option value="cm">Centimeters (cm)</option>
+              <option value="mm">Millimeters (mm)</option>
+              <option value="in">Inches (in)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dpi">DPI</label>
+            <input type="number" id="dpi" class="form-control" value="72">
+          </div>
+          <div class="form-group">
+            <label for="maxSize">Max Size (KB)</label>
+            <input type="number" id="maxSize" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="minSize">Min Size (KB)</label>
+            <input type="number" id="minSize" class="form-control">
+          </div>
+
+          <hr>
+
+          <button id="download-jpg" class="btn btn-success mr-2">Download JPG</button>
+          <button id="download-png" class="btn btn-success mr-2">Download PNG</button>
+          <button id="download-pdf" class="btn btn-success">Download PDF</button>
+
+          <hr>
+          
+          <button id="preview-btn" class="btn btn-info mr-2">Preview</button>
+          <button id="reset" class="btn btn-danger">Clear Image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="previewModalLabel">Image Preview</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modal-preview-image" src="" alt="Preview" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
